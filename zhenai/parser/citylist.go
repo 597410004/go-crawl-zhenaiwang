@@ -11,7 +11,6 @@ func ParserCityList(contents []byte) types.ParseResult {
 	re, _ := regexp.Compile(urlReg)
 	matches := re.FindAllSubmatch(contents, -1)
 	result := types.ParseResult{}
-		limit := 10
 	for _, m := range matches {
 		result.Items = append(result.Items, "City"+string(m[2]))
 		url:=string(m[1])
@@ -19,10 +18,6 @@ func ParserCityList(contents []byte) types.ParseResult {
 			types.Request{Url: url, ParseFunc: func(bytes []byte) types.ParseResult {
 				return ParserCity(bytes,url)
 			}})
-		limit--
-		if limit == 0 {
-			break
-		}
 	}
 	return result
 }

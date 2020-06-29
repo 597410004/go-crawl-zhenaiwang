@@ -14,7 +14,6 @@ var moneyRegex = regexp.MustCompile(`<td><span class="grayL">月   薪：</sp
 
 func ParseProfile(contents []byte, name string) types.ParseResult {
 	profile := model.Profile{}
-	//fmt.Println(string(contents))
 	if age, err := strconv.Atoi(extractString(ageRegex, contents)); err == nil {
 		profile.Age = age
 	}
